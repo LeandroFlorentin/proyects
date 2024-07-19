@@ -1,16 +1,7 @@
-import moment from "moment-timezone";
 export default {
   singup: {
     post: {
-      tags: ["SECURITY"],
-      parameters: [
-        /*             {
-              name: "token",
-              in: "query",
-              required: true,
-              type: "string",
-            }, */
-      ],
+      tags: ["AUTENTICATION"],
       requestBody: {
         content: {
           "application/json": {
@@ -63,28 +54,24 @@ export default {
             "application/json": {
               schema: {
                 type: "object",
-                example: {
-                  info: "boolean",
-                  msg: "string",
-                  content: {
-                    resumen: {
-                      codigoOperacion: "string",
-                      fechaIngreso: "string",
-                      mailUsuario: "string",
-                      origen: "string",
-                      cantidadRegistros: "string",
-                      cantidadIngresados: "string",
-                      cantidadRechazados: "string",
-                    },
-                    detalleIngresos: {
-                      operativa: "string",
-                      ordenRetiro: "string",
-                      numeroEnvio: "string",
-                      remito: "string",
-                      estado: "string",
-                      sucursalDestino: "string",
-                    },
+                properties: {
+                  info: {
+                    type: "boolean",
+                    example: true,
                   },
+                  msg: {
+                    type: "string",
+                    example: "Username John Doe created successfully",
+                  },
+                  idusername: {
+                    type: "number",
+                    example: 42,
+                  },
+                },
+                example: {
+                  info: true,
+                  msg: "Username John Doe created successfully",
+                  idusername: 42,
                 },
                 items: {
                   type: "object",
