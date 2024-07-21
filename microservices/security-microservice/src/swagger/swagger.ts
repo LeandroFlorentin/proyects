@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import auth from "../rutas_swagger/auth.js";
 import jwt from "../rutas_swagger/jwt.js";
 const URL_SECURITY = JSON.parse(process.env.URL_SECURITY || "{}");
-const { singup } = auth;
+const { singup, login } = auth;
 const { get_token } = jwt;
 
 const _filename = fileURLToPath(import.meta.url);
@@ -16,6 +16,7 @@ const options = {
     info: { title: "Security Microservice", version: "1.0.0" },
     paths: {
       "/api/security/singup": singup,
+      "/api/security/login": login,
       "/api/security/get_token": get_token,
     },
   },

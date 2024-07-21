@@ -50,6 +50,14 @@ export default {
       responses: {
         200: {
           description: "Succes",
+          headers: {
+            token: {
+              description: "Token generated for the user",
+              schema: {
+                type: "string",
+              },
+            },
+          },
           content: {
             "application/json": {
               schema: {
@@ -103,6 +111,87 @@ export default {
                         },
                       },
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+        500: {
+          description: "Error internal server",
+        },
+      },
+    },
+  },
+  login: {
+    post: {
+      tags: ["AUTENTICATION"],
+      requestBody: {
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                username: {
+                  type: "string",
+                  example: "John Doe",
+                },
+                password: {
+                  type: "string",
+                  example: "123456",
+                },
+              },
+              required: ["username", "password"],
+              example: {
+                username: "John Doe",
+                password: "123456",
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        200: {
+          description: "Succes",
+          headers: {
+            token: {
+              description: "Token generated for the user",
+              schema: {
+                type: "string",
+              },
+            },
+          },
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  info: {
+                    type: "boolean",
+                    example: true,
+                  },
+                  msg: {
+                    type: "string",
+                    example: "Info OK",
+                  },
+                  content: {
+                    type: "object",
+                    properties: {
+                      msg: {
+                        type: "string",
+                      },
+                      idusername: {
+                        type: "number",
+                      },
+                    },
+                  },
+                },
+                example: {
+                  info: true,
+                  msg: "Info OK",
+                  content: {
+                    idusername: 0,
+                    msg: "Login Success",
                   },
                 },
               },
