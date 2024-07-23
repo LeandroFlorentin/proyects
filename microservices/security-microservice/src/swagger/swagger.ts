@@ -6,7 +6,7 @@ import auth from "../rutas_swagger/auth.js";
 import jwt from "../rutas_swagger/jwt.js";
 const URL_SECURITY = JSON.parse(process.env.URL_SECURITY || "{}");
 const { singup, login } = auth;
-const { get_token } = jwt;
+const { get_token, decoded_token } = jwt;
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
@@ -14,10 +14,20 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: { title: "Security Microservice", version: "1.0.0" },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
     paths: {
       "/api/security/singup": singup,
       "/api/security/login": login,
       "/api/security/get_token": get_token,
+      "/api/security/decoded_token": decoded_token,
     },
   },
   apis: [`${path.join(_dirname, "../routes/*.ts")}`],
