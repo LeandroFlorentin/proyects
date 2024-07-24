@@ -45,3 +45,5 @@ export interface IBodyLoginX {
 export interface IResponseFindUser {
   idusername: number;
 }
+
+export interface IBodyUpdateUser extends ICreateUser {}

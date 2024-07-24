@@ -49,7 +49,7 @@ export default {
       },
       responses: {
         200: {
-          description: "Succes",
+          description: "Success",
           headers: {
             token: {
               description: "Token generated for the user",

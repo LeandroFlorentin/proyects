@@ -6,7 +6,7 @@ import auth from "../rutas_swagger/auth.js";
 import jwt from "../rutas_swagger/jwt.js";
 const URL_SECURITY = JSON.parse(process.env.URL_SECURITY || "{}");
 const { singup, login } = auth;
-const { get_token, decoded_token } = jwt;
+const { decoded_token } = jwt;
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = path.dirname(_filename);
@@ -26,7 +26,6 @@ const options = {
     paths: {
       "/api/security/singup": singup,
       "/api/security/login": login,
-      "/api/security/get_token": get_token,
       "/api/security/decoded_token": decoded_token,
     },
   },

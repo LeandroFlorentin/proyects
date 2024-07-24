@@ -1,6 +1,8 @@
 import db from "../db.js";
 import axios from "axios";
 import md5 from "md5";
+import { ICreateUser } from "../interfaces/interface_error_handler.js";
+import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
 import { IResponseDecoded } from "../interfaces/interface_jwt.js";
 export function bodyMassage<R>(body: any): R {
@@ -37,7 +39,7 @@ export async function encryptPassword(password: string): Promise<string> {
   return md5(password);
 }
 
-export const getTokenHeaders = (req: any): string => {
+export const getTokenHeaders = (req: Request): string => {
   const authHeader = req.headers["authorization"];
   let token: string;
   if (authHeader && authHeader.startsWith("Bearer ")) {
