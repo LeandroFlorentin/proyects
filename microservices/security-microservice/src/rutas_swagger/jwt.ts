@@ -44,8 +44,46 @@ export default {
             },
           },
         },
-        500: {
-          description: "Error internal server",
+        401: {
+          description: "Error",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  info: {
+                    type: "boolean",
+                    example: false,
+                  },
+                  msg: {
+                    type: "string",
+                    example: "Invalid token.",
+                  },
+                  content: {
+                    type: "object",
+                    example: {
+                      name: {
+                        type: "stirng",
+                        example: "JsonWebTokenError",
+                      },
+                      message: {
+                        type: "string",
+                        example: "invalid signature",
+                      },
+                    },
+                  },
+                },
+                example: {
+                  info: false,
+                  msg: "Invalid token.",
+                  content: {
+                    name: "JsonWebTokenError",
+                    message: "invalid signature",
+                  },
+                },
+              },
+            },
+          },
         },
       },
     },

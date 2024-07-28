@@ -118,7 +118,55 @@ export default {
           },
         },
         500: {
-          description: "Error internal server",
+          description: "Error",
+          headers: {
+            token: {
+              description: "Token generated for the user",
+              schema: {
+                type: "string",
+              },
+            },
+          },
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  info: {
+                    type: "boolean",
+                    example: true,
+                  },
+                  msg: {
+                    type: "string",
+                    example: "Username John Doe created successfully",
+                  },
+                  content: {
+                    type: "object",
+                    properties: {
+                      sqlStatus: {
+                        type: "number",
+                      },
+                      sqlCode: {
+                        type: "string",
+                      },
+                      sqlCall: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+                example: {
+                  info: false,
+                  msg: "Duplicate entry 'John Doe' for key 'usernames.username_UNIQUE'",
+                  content: {
+                    sqlStatus: 1062,
+                    sqlCode: "ER_DUP_ENTRY",
+                    sqlCall: "call create_username('John Doe','example@gmail.com.ar','e10adc3949ba59abbe56e057f20f883e','John','Doe','1165789435')",
+                  },
+                },
+              },
+            },
+          },
         },
       },
     },
@@ -152,7 +200,7 @@ export default {
       },
       responses: {
         200: {
-          description: "Succes",
+          description: "Success",
           headers: {
             token: {
               description: "Token generated for the user",
@@ -197,9 +245,6 @@ export default {
               },
             },
           },
-        },
-        500: {
-          description: "Error internal server",
         },
       },
     },

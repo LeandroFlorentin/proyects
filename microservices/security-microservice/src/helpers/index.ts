@@ -1,7 +1,6 @@
 import db from "../db.js";
 import axios from "axios";
 import md5 from "md5";
-import { ICreateUser } from "../interfaces/interface_error_handler.js";
 import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
 import { IResponseDecoded } from "../interfaces/interface_jwt.js";
