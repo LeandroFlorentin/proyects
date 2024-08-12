@@ -1,7 +1,6 @@
 import db from "../db.js";
 import axios from "axios";
 import md5 from "md5";
-import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
 import { IResponseDecoded } from "../interfaces/interface_jwt.js";
 export function bodyMassage<R>(body: any): R {
@@ -22,11 +21,11 @@ export async function generalSp<T>(sp: string, body: Object): Promise<T[]> {
   }
 }
 
-export async function getGeneral<R>(url: string, path: string): Promise<R> {
+export async function getGeneral<R>(url: string, path: string, config?: object): Promise<R> {
   try {
     let url_parse = JSON.parse(url);
     let url_call = url_parse.url + url_parse.port + path;
-    let get_data = await axios.get(url_call);
+    let get_data = await axios.get(url_call, config);
     return get_data.data as R;
   } catch (error: any) {
     console.log("Error in get", error);
@@ -38,7 +37,7 @@ export async function encryptPassword(password: string): Promise<string> {
   return md5(password);
 }
 
-export const getTokenHeaders = (req: Request): string => {
+export const getTokenHeaders = (req: any): string => {
   const authHeader = req.headers["authorization"];
   let token: string;
   if (authHeader && authHeader.startsWith("Bearer ")) {
